@@ -11,10 +11,10 @@ def get_elfs(input: str):
         elfs.append(current_elf)
     return elfs
 
-def first(input: str):
+def part1(input: str):
     return max(get_elfs(input))
 
-def second(input: str):
+def part2(input: str):
     elfs = get_elfs(input)
     elfs.sort(reverse=True)
     return sum(elfs[:3])
