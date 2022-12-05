@@ -8,14 +8,14 @@ NOT_IMPLEMENTED = click.style("(Not implemented)", italic=True)
 @click.command()
 @click.argument('day')
 def solve(day: str):
-    if day == 'all':
-        try:
-            for i in range(1, 26):
-                solve_day(i)
-        except FileNotFoundError:
-            click.echo(NOT_IMPLEMENTED)
-    else:
-        solve_day(day)
+    try:
+        if day == 'all':
+                for i in range(1, 26):
+                    solve_day(i)
+        else:
+            solve_day(day)
+    except FileNotFoundError:
+        click.echo(NOT_IMPLEMENTED)
 
 def solve_day(daynum):
     click.echo(click.style(f"--- Day {daynum} ---", bold=True))
@@ -31,7 +31,7 @@ def solve_day(daynum):
 def get_output(module, func, input):
     try:
         return getattr(module, func)(input)
-    except:
+    except AttributeError:
         return NOT_IMPLEMENTED
 
 if __name__ == '__main__':
