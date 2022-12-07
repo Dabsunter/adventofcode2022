@@ -43,7 +43,7 @@ def parse_shell(input: str):
                 cwd.register(Dir(dirname, cwd))
 
             case [size, filename]:
-                assert in_ls
+                assert in_ls and size.isdecimal()
                 cwd.register(File(filename, int(size)))
 
     return root
