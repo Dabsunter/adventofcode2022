@@ -29,10 +29,9 @@ def solve_day(daynum):
     click.echo(f"Second part : {get_output(day, 'part2', input)}")
 
 def get_output(module, func, input):
-    try:
-        return getattr(module, func)(input)
-    except AttributeError:
-        return NOT_IMPLEMENTED
+    if (part := getattr(module, func, False)):
+        return part(input)
+    return NOT_IMPLEMENTED
 
 if __name__ == '__main__':
     solve()
